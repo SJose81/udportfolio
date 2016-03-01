@@ -17,6 +17,7 @@ The public url ngrogk provided for the project is: http://24a4a89b.ngrok.io
 -> After code optimization in main.js (modification details given in the next section) and loading the pizza.html page, the chrome console displays: 
  * 'Time to generate pizzas on load: 17ms' 
  * 'Average time to generate last 10 frames: 3.718000000000461ms'
+ 
 -> After code optimizations, time to resize pizza is:
  * Time to resize pizzas: 4.695000000298023ms 
 

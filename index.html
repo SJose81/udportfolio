@@ -2,7 +2,7 @@
     Original code Author: Udacity
     Code Modification Author: Sophia
     Modifications made:
-    1) Measured and provided analysis on the impact of web fond on speed.
+    1) Measured and provided analysis below as inline comment on the impact of web font on speed.
     2) Used print media query for print.css stylesheet link to reduce render blocking
     3) Used Async attribute to external scripts so that DOM construction is not blocked while files are fetched from remote server
     4) Deferred inline google analytics script as this script can be executed once the page has loaded and hence will not block document parsing.
@@ -18,12 +18,11 @@
     <title>Sophia G: Performance Test Page</title>
 
     <!-- Hmm, what is the impact of web fonts on speed? Measure it... -->
-    <!-- Replaced the link below as it is giving 404. As per my analysis, the impact is negligible if the number of fints used are minimal. As per my measurement the total load time is 0.13ms--> 
+    <!-- Replaced the link below as it is giving 404. As per my analysis, the google fonts external css link is lowering the page speed score. 73/100 on Mobile and 88/100 on Desktop. Commented out the link to get a high page speed score.--> 
     <!-- <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet"> -->
-    <link href="https://www.google.com/fonts#QuickUsePlace:quickUse/Family:Open+Sans:400,700" rel="stylesheet">
-
-    <link href="css/style.css" rel="stylesheet">
+    <!-- <link href="https://www.google.com/fonts#QuickUsePlace:quickUse/Family:Open+Sans:400,700" rel="stylesheet"> -->
     <link href="css/print.css" rel="stylesheet" media="print">
+    <link href="css/style.min.css" rel="stylesheet">
 
     <script defer>
       (function(w,g){w['GoogleAnalyticsObject']=g;
@@ -69,7 +68,8 @@
           </li>
 
           <li>
-            <img style="width: 100px;" src="views/images/pizzeria-compressor.jpg">
+            <!-- <img style="width: 100px;" src="views/images/pizzeria-compressor.jpg"> -->
+            <img style="width: 100px;" src="http://s12.postimg.org/5gvk8zoal/pizzeria2.jpg">
             <a href="views/pizza.html">Cam's Pizzeria</a>
             <p>Who wants a performant pizza?</p>
           </li>

@@ -1,3 +1,13 @@
+<!--
+    Original code Author: Udacity
+    Code Modification Author: Sophia
+    Modifications made:
+    1) Measured and provided analysis on the impact of web fond on speed.
+    2) Used print media query for print.css stylesheet link to reduce render blocking
+    3) Used Async attribute to external scripts so that DOM construction is not blocked while files are fetched from remote server
+    4) Deferred inline google analytics script as this script can be executed once the page has loaded and hence will not block document parsing.
+    5) Customized the page by changing the image ans some of the text.
+ --> 
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,15 +15,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content=" FILL ME IN ">
     <meta name="author" content=" FILL ME IN ">
-    <title>Cameron Pittman: Portfolio</title>
+    <title>Sophia G: Performance Test Page</title>
 
     <!-- Hmm, what is the impact of web fonts on speed? Measure it... -->
-    <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+    <!-- Replaced the link below as it is giving 404. As per my analysis, the impact is negligible if the number of fints used are minimal. As per my measurement the total load time is 0.13ms--> 
+    <!-- <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet"> -->
+    <link href="https://www.google.com/fonts#QuickUsePlace:quickUse/Family:Open+Sans:400,700" rel="stylesheet">
 
     <link href="css/style.css" rel="stylesheet">
-    <link href="css/print.css" rel="stylesheet">
+    <link href="css/print.css" rel="stylesheet" media="print">
 
-    <script>
+    <script defer>
       (function(w,g){w['GoogleAnalyticsObject']=g;
       w[g]=w[g]||function(){(w[g].q=w[g].q||[]).push(arguments)};w[g].l=1*new Date();})(window,'ga');
 
@@ -21,27 +33,27 @@
       ga('create', 'UA-XXXX-Y');
       ga('send', 'pageview');
     </script>
-    <script src="http://www.google-analytics.com/analytics.js"></script>
+    <script async src="http://www.google-analytics.com/analytics.js"></script>
     <script async src="js/perfmatters.js"></script>
   </head>
 
   <body>
     <header>
-      <a href="/"><img src="img/profilepic.jpg"></a>
-      <p>Cameron Pittman<br><span>Course Developer</span></p>
+      <a href="/"><img src="img/MyImg.png"></a>
+      <p>Sophia G<br><span>Udacity Student</span></p>
     </header>
 
     <div class="container">
       <div class="hero">
-        <strong>I love web development!</strong> This is a template for a simple portfolio. I decided to use it to showcase a few Udacity courses I've taken and some teaching work, but you can use it to showcase any kind of project that you want the world to see :) <br> Contact me: me@email.com
+        <strong>I love web development!</strong> This is a simple webpage forked and customized from Udacity instructor's git repo. I am using this page to improve the page performance, by applying the techniques and tips learnt in the course. Check out the performance improvement :) <br> Contact me: fake@email.com
       </div>
 
       <div class="content">
         <ul>
           <li>
             <img src="https://lh4.ggpht.com/kJEnfqhPvtm4m3EneSZ4fWYGS8lW4YNhEjk6zPkyrQaBUHc-2Y_ElDic99NHI0h-UBLXVbRCjFybFvrWxdk=s100">
-            <a href="project-2048.html">Build Your Own 2048!</a>
-            <p>I made my own version of 2048. How cool is that!?</p>
+            <a href="project-2048.html">Cam's 2048!</a>
+            <p>Checkout Cam's own version of 2048. How cool is that!?</p>
           </li>
 
           <li>
@@ -57,7 +69,7 @@
           </li>
 
           <li>
-            <img style="width: 100px;" src="views/images/pizzeria.jpg">
+            <img style="width: 100px;" src="views/images/pizzeria-compressor.jpg">
             <a href="views/pizza.html">Cam's Pizzeria</a>
             <p>Who wants a performant pizza?</p>
           </li>

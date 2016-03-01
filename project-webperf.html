@@ -1,3 +1,11 @@
+<!--
+    Original code Author: Udacity
+    Code Modification Author: Sophia
+    Modifications made:
+    1) Used print media query for print.css stylesheet link to reduce render blocking
+    2) Used Async attribute to external scripts so that DOM construction is not blocked while files are fetched from remote server
+    3) Deferred inline google analytics script as this script can be executed once the page has loaded and hence will not block document parsing.
+ --> 
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,9 +19,9 @@
     <!-- <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet"> -->
 
     <link href="css/style.css" rel="stylesheet">
-    <link href="css/print.css" rel="stylesheet">
+    <link href="css/print.css" rel="stylesheet" media="print">
 
-    <script>
+    <script defer>
       (function(w,g){w['GoogleAnalyticsObject']=g;
       w[g]=w[g]||function(){(w[g].q=w[g].q||[]).push(arguments)};w[g].l=1*new Date();})(window,'ga');
 
@@ -21,7 +29,7 @@
       ga('create', 'UA-XXXX-Y');
       ga('send', 'pageview');
     </script>
-    <script src="http://www.google-analytics.com/analytics.js"></script>
+    <script async src="http://www.google-analytics.com/analytics.js"></script>
     <script async src="js/perfmatters.js"></script>
   </head>
 

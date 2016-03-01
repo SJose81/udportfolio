@@ -14,6 +14,17 @@ http://www.html5rocks.com/en/tutorials/webperformance/usertiming/
 Creator:
 Cameron Pittman, Udacity Course Developer
 cameron *at* udacity *dot* com
+
+Code Modification Author: Sophia G
+Two code fixes have been made:
+1) Updated the changePizzaSizes(size) function to calculate the size based on constant values 
+depending on the input parameter. Removed code using element offsetwidth within the for loop 
+as this causes the browser to recalulate the layout and thus causes Jank.
+2) Updated the updatePositions() function, using tips provided in 
+'https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html'. Moved and stored the 
+document.body.scrollTop value outside the for loop so as to avoid the browser having to call and 
+recalculate the layout within the for loop and instead use the stored value.
+
 */
 
 // As you may have realized, this website randomly generates pizzas.
@@ -448,12 +459,26 @@ var resizePizzas = function(size) {
   }
 
   // Iterates through pizza elements on the page and changes their widths
+  // Updated the function to calculate the size based on constant values depending on the input parameter.
+  // Removed code within the for loop that uses 'offsetWidth', as this causes jank and is not required to calculte pizza size change.
   function changePizzaSizes(size) {
-    for (var i = 0; i < document.querySelectorAll(".randomPizzaContainer").length; i++) {
-      var dx = determineDx(document.querySelectorAll(".randomPizzaContainer")[i], size);
-      var newwidth = (document.querySelectorAll(".randomPizzaContainer")[i].offsetWidth + dx) + 'px';
-      document.querySelectorAll(".randomPizzaContainer")[i].style.width = newwidth;
+    switch(size){
+      case "1":
+        newwidth = 25;
+      case "2":
+        newwidth = 33.3;
+      case "3":
+        newwidth = 50;
+      default:
+      console.log("bug in sizeSwitcher");
     }
+
+    var randomPizzas = document.querySelectorAll(".randomPizzaContainer");
+    
+    for (var i = 0; i < randomPizzas.length; i++) {
+        randomPizzas[i].style.width = newwidth + "%";
+    }
+    
   }
 
   changePizzaSizes(size);
@@ -497,13 +522,19 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
 // Moves the sliding background pizzas based on scroll position
+// Updated this function based on the recommentation provided in the above
+// url to get the value document.body.scrollTop outside the for loop to avoid jank
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
-
   var items = document.querySelectorAll('.mover');
+  var cachedScrollTop = document.body.scrollTop;
+  
   for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+    //adding the line below to use cachedScrollTop
+    var phase = Math.sin((cachedScrollTop / 1250) + (i % 5));
+    //commenting out the line below to avoid jank
+    //var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 

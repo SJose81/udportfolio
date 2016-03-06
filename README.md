@@ -2,15 +2,18 @@
 
 
 ##Page speed and onload time:
-The public url ngrogk provided for the project is: http://24a4a89b.ngrok.io
--> On analyzing the site with page speed insight, the fix suggestion was to optimze the images. I used the Compressor.io image compression software to compress the pizzaria image. The next run gave better numbers page speed insight. But since the image was on my local machine, the score was still low. Hosted the compressed image on a remote server 'http://s12.postimg.org':
+The public url ngrogk provided for the project is: http://e09573c6.ngrok.io/
+-> On analyzing the site with page speed insight (https://developers.google.com/speed/pagespeed/insights/), the fix suggestion was to optimze the images. I used the Compressor.io image compression software to compress the pizzaria image. The next run gave better numbers page speed insight. But since the image was on my local machine, the score was still low. Hosted the compressed image on a remote server 'http://s12.postimg.org':
  * 63/100 on Mobile and 74/100 on Desktop.
 
 -> To increase the page speed score, I further compressed the pizzaria image and hostet it on postimg.org.
--> Minified the style.css file. Used print media query and deferred inline javascript to eliminate render blocking above the fold content. The page speed score increased to 73/100 on Mobile and 88/100 on Desktop  
+-> Minified the style.css file (from https://cssminifier.com). Used print media query and deferred inline javascript to eliminate render blocking above the fold content. The page speed score increased to 73/100 on Mobile and 88/100 on Desktop  
 
 -> The google fonts link still seemed to be the bottleneck, so I commented out the link. The html elements now refer to the font style provided in style.min.css. This increased the page speed score to: 
 * 88/100 on Mobile and 93/100 on Desktop.
+
+-> As per the comments provided in the review, I got the critical path css using the link: https://jonassebastianohlsson.com/criticalpathcssgenerator/. As per suggestions provided in the link. I have minified and inlined the critical path css in index.html. For the rest of the css which is not critical for page rendering, I have moved it to the end of the html script, just before the closing body tag.
+-> The page speed score has now increased: 95/100 on Mobile and 95/100 on Desktop.
 
 -> On loading the page on the browser, the load time was as follows: DCL: 139ms, onload: 1182ms. THis was because the pizzaria image was on my local machine. On hosting image from remote machine, the load time is now as follows: DCL: 156ms, onload: 443ms
 

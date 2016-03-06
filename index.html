@@ -3,6 +3,7 @@
     Code Modification Author: Sophia
     Modifications made:
     1) Measured and provided analysis below as inline comment on the impact of web font on speed.
+    3) Moved critical path css to inline and minified the inline css. Also moved the non critical-path css to the end of the html page
     2) Used print media query for print.css stylesheet link to reduce render blocking
     3) Used Async attribute to external scripts so that DOM construction is not blocked while files are fetched from remote server
     4) Deferred inline google analytics script as this script can be executed once the page has loaded and hence will not block document parsing.
@@ -18,11 +19,19 @@
     <title>Sophia G: Performance Test Page</title>
 
     <!-- Hmm, what is the impact of web fonts on speed? Measure it... -->
-    <!-- Replaced the link below as it is giving 404. As per my analysis, the google fonts external css link is lowering the page speed score. 73/100 on Mobile and 88/100 on Desktop. Commented out the link to get a high page speed score.--> 
+    <!-- As per my analysis, the google fonts external css link is lowering the page speed score. 73/100 on Mobile and 88/100 on Desktop. Commented out the link to get a high page speed score.--> 
     <!-- <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet"> -->
-    <!-- <link href="https://www.google.com/fonts#QuickUsePlace:quickUse/Family:Open+Sans:400,700" rel="stylesheet"> -->
+
+    <!-- The css below is critical path css and hence it has been inlined so that the page can be rendered faster. THe css has also been minified -->
+    <style type="text/css">
+      .hero,footer{border-top:1px solid #ccc}footer span,li p{font-style:italic}html{font-size:100%;overflow-y:scroll;-ms-text-size-adjust:100%;-webkit-text-size-adjust:none}body{margin:0;font-size:14px;line-height:1.61;font-weight:400;font-family:'Open Sans',sans-serif;color:#333;background:#fff}header p,strong{font-weight:700}a{color:#12C}ul{margin:1em 0;padding:0 0 0 20px}img{border:0;max-width:100%}.container,footer,header{max-width:45em;margin:0 auto}header{padding:0 .5em;color:#C90B0B}header img{border-radius:40px;float:left}header p{font-size:1.5em;padding-left:4em}header p span{font-size:.8em;font-weight:400}.hero{padding:2em;background-color:#f8f8f8;font-size:1.2em;border-bottom:1px solid #ccc}.content{padding:1em}.content li{list-style-type:none;font-size:1.1em}li img{float:left;padding-right:1em}li p{font-size:.9em}footer{padding:0 .5em}footer span{float:right}@media only screen and (max-width:480px){body{font-size:12px}header p{padding-left:4.5em}}
+    </style>
+
+    <!-- Commented out the css links below and moved it to the end of the html page-->
+    <!--
     <link href="css/print.css" rel="stylesheet" media="print">
-    <link href="css/style.min.css" rel="stylesheet">
+    <link href="css/style.min.css" rel="stylesheet"> 
+    -->
 
     <script defer>
       (function(w,g){w['GoogleAnalyticsObject']=g;
@@ -79,5 +88,9 @@
     <footer>
       <p>&copy; Web Performance 2014 <span id="crp-stats"></span></p>
     </footer>
+
+    <!-- Moving the render blocking CSS which is not part of the critical path to the end of the html page so that it does not block rendering. THe style1.css now has styles which is not critical to initial payload.-->
+    <link href="css/print.css" rel="stylesheet" media="print">
+    <link href="css/style1.css" rel="stylesheet">
   </body>
 </html>

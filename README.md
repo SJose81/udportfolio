@@ -13,7 +13,8 @@ The public url ngrogk provided for the project is: http://e09573c6.ngrok.io/
 * 88/100 on Mobile and 93/100 on Desktop.
 
 -> As per the comments provided in the review, I got the critical path css using the link: https://jonassebastianohlsson.com/criticalpathcssgenerator/. As per suggestions provided in the link. I have minified and inlined the critical path css in index.html. For the rest of the css which is not critical for page rendering, I have moved it to the end of the html script, just before the closing body tag.
--> The page speed score has now increased: 95/100 on Mobile and 95/100 on Desktop.
+-> The page speed score has now increased to: 
+* 95/100 on Mobile and 95/100 on Desktop.
 
 -> On loading the page on the browser, the load time was as follows: DCL: 139ms, onload: 1182ms. THis was because the pizzaria image was on my local machine. On hosting image from remote machine, the load time is now as follows: DCL: 156ms, onload: 443ms
 

@@ -39,7 +39,8 @@ The public url ngrogk provided for the project is:  http://95254de9.ngrok.io
 * 2) Updated the updatePositions() function, to move document.body.scrollTop value outside the for loop. Used the tips provided in 
 'https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html', used the same logic that is provided in non-heavy scroll.
 * 3) Used compressed images, JSHint and jsbeautifier
--> As per the review suggestions, the following code modifications were made:
+
+-> As per the review suggestions, the following code modifications were made in main.js:
 * 4) Modified code to use 'document.getElementById()' instead of 'document.querySelector()' as it is faster.
 * 5) In the for loop in 'changePizzaSizes(size)' function, used array length saved in a local variable and used document.getElementsByClassName('randomPizzaContainer') saved in a local variable so that the DOM is not touched for every iteration.
 * 6) Used document.getElementsByClassName('randomPizzaContainer') instead of document.querySelectorAll('randomPizzaContainer') as it is faster.

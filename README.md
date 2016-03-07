@@ -2,7 +2,7 @@
 
 
 ##Page speed and onload time:
-The public url ngrogk provided for the project is: http://e09573c6.ngrok.io/
+The public url ngrogk provided for the project is:  http://95254de9.ngrok.io
 -> On analyzing the site with page speed insight (https://developers.google.com/speed/pagespeed/insights/), the fix suggestion was to optimze the images. I used the Compressor.io image compression software to compress the pizzaria image. The next run gave better numbers page speed insight. But since the image was on my local machine, the score was still low. Hosted the compressed image on a remote server 'http://s12.postimg.org':
  * 63/100 on Mobile and 74/100 on Desktop.
 
@@ -39,6 +39,13 @@ The public url ngrogk provided for the project is: http://e09573c6.ngrok.io/
 * 2) Updated the updatePositions() function, to move document.body.scrollTop value outside the for loop. Used the tips provided in 
 'https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html', used the same logic that is provided in non-heavy scroll.
 * 3) Used compressed images, JSHint and jsbeautifier
+-> As per the review suggestions, the following code modifications were made:
+* 4) Modified code to use 'document.getElementById()' instead of 'document.querySelector()' as it is faster.
+* 5) In the for loop in 'changePizzaSizes(size)' function, used array length saved in a local variable and used document.getElementsByClassName('randomPizzaContainer') saved in a local variable so that the DOM is not touched for every iteration.
+* 6) Used document.getElementsByClassName('randomPizzaContainer') instead of document.querySelectorAll('randomPizzaContainer') as it is faster.
+* 7) The variable phase (in function updatePosition()) and the variable elem (in addEventListener function) are declared outside the for loop so that it is not created every time the loop is executed.
+* 8) The number of background pizzas has been reduced to 24 to increase the page performance.
+
 
 -> Modifiactions made in project-2048.html, project-mobile.html and project-webperf.html:
 * 1) Added print media query for print.css stylesheet link to reduce render blocking
